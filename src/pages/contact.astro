@@ -1,20 +1,45 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SocialMedia from '../components/SocialMedia.astro';
+import Sponsors from '../components/sponsors.astro';
 
 const pageTitle = "Únete | Cargo Legends RP";
-const pageDescription = "Únete a nuestra comunidad de transportistas virtuales en Discord";
+const pageDescription = "Únete a nuestra comunidad de transportistas virtuales en Discord y conviértete en parte de la leyenda";
 
 const discordInfo = {
     title: "Discord Oficial",
     description: "Únete a nuestra comunidad activa de más de 100 transportistas. Participa en eventos, convoys y mucho más.",
-    serverLink: "#", // Reemplazar con tu link de Discord
+    serverLink: "https://discord.gg/3jVtXR3WEa",
     features: [
         "Eventos semanales",
         "Sistema de rangos",
         "Convoys organizados",
-        "Comunidad activa 24/7"
+        "Comunidad activa 24/7",
+        "Sistema de recompensas",
+        "Eventos especiales mensuales"
     ]
+};
+
+const currentPromotions = [
+    {
+        title: "Bienvenida a la Comunidad",
+        description: "¡Recibe un bono de bienvenida con skins exclusivos y acceso a canales especiales!"
+    },
+    {
+        title: "Concurso de Conducción",
+        description: "Participa en nuestro concurso mensual con premios especiales para los mejores conductores"
+    },
+    {
+        title: "Sistema de Referidos",
+        description: "Invita a amigos y gana recompensas especiales por cada nuevo miembro que traigas"
+    }
+];
+
+const communityStats = {
+    members: "150+",
+    events: "20+",
+    convoys: "30+",
+    activeDrivers: "50+"
 };
 ---
 
@@ -24,14 +49,59 @@ const discordInfo = {
             <h1 class="text-4xl font-bold text-center mb-8 text-white cyber-glow">
                 Únete a Cargo Legends RP
             </h1>
-            
-            <div class="discord-card">
+
+            <!-- Sección de Beneficios -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-8 text-white">¿Por qué unirte?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {discordInfo.features.map((feature) => (
+                        <div class="feature-card p-6 rounded-lg bg-black/10 hover:bg-black/20 transition-colors duration-300">
+                            <div class="feature-icon mb-4">✨</div>
+                            <h3 class="text-xl font-semibold mb-2 text-white">{feature}</h3>
+                            <p class="text-gray-300">Detalles sobre {feature.toLowerCase()}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <!-- Sección de Promociones -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-8 text-white">Promociones Actuales</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {currentPromotions.map((promotion) => (
+                        <div class="promotion-card p-6 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 transition-colors duration-300">
+                            <h3 class="text-xl font-semibold mb-2">{promotion.title}</h3>
+                            <p class="text-gray-200">{promotion.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <!-- Sección de Estadísticas -->
+            <div class="mb-16 text-center">
+                <h2 class="text-3xl font-bold text-white mb-8">Nuestra Comunidad</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    {Object.entries(communityStats).map(([key, value]) => (
+                        <div class="stat-card p-6 rounded-lg bg-black/10 hover:bg-black/20 transition-colors duration-300">
+                            <h3 class="text-2xl font-bold text-blue-400">{value}</h3>
+                            <p class="text-gray-300">
+                                {key === 'activeDrivers' ? 'Conductores Activos' : 
+                                 key === 'convoys' ? 'Convoys Organizados' : 
+                                 key === 'events' ? 'Eventos Mensuales' : 'Miembros'}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <!-- Sección de Discord -->
+            <div class="discord-card mb-16">
                 <i class="fab fa-discord discord-icon"></i>
                 <h2 class="discord-title">{discordInfo.title}</h2>
                 <p class="discord-description">{discordInfo.description}</p>
                 
                 <div class="features-grid">
-                    {discordInfo.features.map(feature => (
+                    {discordInfo.features.map((feature) => (
                         <div class="feature-item">
                             <i class="fas fa-check feature-icon"></i>
                             <span>{feature}</span>
@@ -39,7 +109,7 @@ const discordInfo = {
                     ))}
                 </div>
 
-                <a href={discordInfo.serverLink} target="_blank" rel="noopener noreferrer" class="join-button">
+                <a href="https://discord.gg/3jVtXR3WEa" target="_blank" rel="noopener noreferrer" class="join-button" aria-label="Unirse al servidor de Discord de Cargo Legends RP">
                     <i class="fab fa-discord"></i>
                     Unirse al Servidor
                 </a>
@@ -50,6 +120,8 @@ const discordInfo = {
 </Layout>
 
 <style>
+    .container { max-width: 1200px; }
+    
     .cyber-glow {
         text-shadow: 0 0 10px rgba(34, 211, 238, 0.5),
                      0 0 20px rgba(34, 211, 238, 0.3);
@@ -113,10 +185,6 @@ const discordInfo = {
         border: 1px solid rgba(34, 211, 238, 0.2);
     }
 
-    .feature-icon {
-        color: #22d3ee;
-    }
-
     .join-button {
         display: inline-flex;
         align-items: center;
@@ -129,7 +197,6 @@ const discordInfo = {
         font-weight: bold;
         text-decoration: none;
         transition: all 0.3s ease;
-        border: none;
     }
 
     .join-button:hover {
@@ -138,14 +205,21 @@ const discordInfo = {
         background: #8299ea;
     }
 
-    @media (max-width: 768px) {
-        .features-grid {
-            grid-template-columns: 1fr;
-        }
+    .feature-icon { font-size: 2rem; }
 
-        .discord-card {
-            margin: 1rem;
-            padding: 1.5rem;
-        }
+    .stat-card,
+    .promotion-card {
+        transition: transform 0.3s ease;
+    }
+    
+    .stat-card:hover,
+    .promotion-card:hover {
+        transform: translateY(-5px);
+    }
+
+    @media (max-width: 768px) {
+        .container { padding: 0 1rem; }
+        .features-grid { grid-template-columns: 1fr; }
+        .discord-card { margin: 1rem; padding: 1.5rem; }
     }
 </style>
