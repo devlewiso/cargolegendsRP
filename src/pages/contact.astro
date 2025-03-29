@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SocialMedia from '../components/SocialMedia.astro';
+
+const pageTitle = "Únete | Cargo Legends RP";
+const pageDescription = "Únete a nuestra comunidad de transportistas virtuales en Discord";
+
+const discordInfo = {
+    title: "Discord Oficial",
+    description: "Únete a nuestra comunidad activa de más de 100 transportistas. Participa en eventos, convoys y mucho más.",
+    serverLink: "#", // Reemplazar con tu link de Discord
+    features: [
+        "Eventos semanales",
+        "Sistema de rangos",
+        "Convoys organizados",
+        "Comunidad activa 24/7"
+    ]
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+    <main class="container mx-auto px-4 pt-24 pb-8">
+        <div class="min-h-screen">
+            <h1 class="text-4xl font-bold text-center mb-8 text-white cyber-glow">
+                Únete a Cargo Legends RP
+            </h1>
+            
+            <div class="discord-card">
+                <i class="fab fa-discord discord-icon"></i>
+                <h2 class="discord-title">{discordInfo.title}</h2>
+                <p class="discord-description">{discordInfo.description}</p>
+                
+                <div class="features-grid">
+                    {discordInfo.features.map(feature => (
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span>{feature}</span>
+                        </div>
+                    ))}
+                </div>
+
+                <a href={discordInfo.serverLink} target="_blank" rel="noopener noreferrer" class="join-button">
+                    <i class="fab fa-discord"></i>
+                    Unirse al Servidor
+                </a>
+            </div>
+        </div>
+    </main>
+    <SocialMedia />
+</Layout>
+
+<style>
+    .cyber-glow {
+        text-shadow: 0 0 10px rgba(34, 211, 238, 0.5),
+                     0 0 20px rgba(34, 211, 238, 0.3);
+    }
+
+    .discord-card {
+        max-width: 600px;
+        margin: 2rem auto;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 1rem;
+        padding: 2.5rem;
+        text-align: center;
+        border: 1px solid rgba(34, 211, 238, 0.2);
+        backdrop-filter: blur(8px);
+        transition: all 0.3s ease;
+    }
+
+    .discord-card:hover {
+        border-color: rgba(34, 211, 238, 0.4);
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+    }
+
+    .discord-icon {
+        font-size: 4rem;
+        color: #7289da;
+        margin-bottom: 1.5rem;
+        filter: drop-shadow(0 0 10px rgba(114, 137, 218, 0.5));
+    }
+
+    .discord-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+    }
+
+    .discord-description {
+        color: #ccc;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #fff;
+        padding: 0.5rem;
+        background: rgba(34, 211, 238, 0.1);
+        border-radius: 0.5rem;
+        border: 1px solid rgba(34, 211, 238, 0.2);
+    }
+
+    .feature-icon {
+        color: #22d3ee;
+    }
+
+    .join-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #7289da;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: none;
+    }
+
+    .join-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(114, 137, 218, 0.4);
+        background: #8299ea;
+    }
+
+    @media (max-width: 768px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .discord-card {
+            margin: 1rem;
+            padding: 1.5rem;
+        }
+    }
+</style>

@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SocialMedia from '../components/SocialMedia.astro';
+
+const pageTitle = "Nuestra Flota | Cargo Legends RP";
+const pageDescription = "Descubre nuestra amplia flota de vehículos disponibles para el roleplay de transportes";
+
+const fleetVehicles = [
+    {
+        name: "Scania S730",
+        description: "Buque insignia de nuestra flota. Potente, eficiente y con el máximo confort para largas distancias.",
+        specs: ["730 HP", "Cabina Highline", "Transmisión Opticruise"],
+        image: "/trucks/scania-s730.jpg"
+    },
+    {
+        name: "Volvo FH16 750",
+        description: "Perfecto equilibrio entre potencia y economía. Ideal para rutas internacionales.",
+        specs: ["750 HP", "I-Shift Dual Clutch", "Sistema I-See"],
+        image: "/trucks/volvo-fh16.jpg"
+    },
+    {
+        name: "Mercedes-Benz Actros",
+        description: "Tecnología de punta y confort premium. La elección perfecta para nuevos conductores.",
+        specs: ["510 HP", "Multimedia Cockpit", "Active Brake Assist 5"],
+        image: "/trucks/actros.jpg"
+    },
+    {
+        name: "DAF XG+",
+        description: "Nueva generación de camiones con diseño aerodinámico y máxima eficiencia.",
+        specs: ["530 HP", "Digital Vision System", "Predictive Cruise Control"],
+        image: "/trucks/daf-xg.jpg"
+    }
+];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+    <main class="container mx-auto px-4 pt-24 pb-8">
+        <div class="min-h-screen">
+            <h1 class="text-4xl font-bold text-center mb-12 text-white">
+                Nuestra Flota Elite
+            </h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {fleetVehicles.map(vehicle => (
+                    <div class="fleet-card group">
+                        <div class="fleet-image-container">
+                            <img 
+                                src={vehicle.image} 
+                                alt={vehicle.name}
+                                class="fleet-image"
+                                onerror="this.src='/placeholder-truck.jpg'"
+                            />
+                            <div class="fleet-overlay"></div>
+                        </div>
+                        <div class="fleet-content">
+                            <h2 class="fleet-title">{vehicle.name}</h2>
+                            <p class="fleet-description">{vehicle.description}</p>
+                            <div class="fleet-specs">
+                                {vehicle.specs.map(spec => (
+                                    <span class="spec-tag">{spec}</span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="/Unirte" class="cta-button">
+                    ¡Únete a Nuestra Flota!
+                </a>
+            </div>
+        </div>
+    </main>
+    <SocialMedia />
+</Layout>
+
+<style>
+    /* Aseguramos que el fondo sea oscuro */
+    :root {
+        color-scheme: dark;
+    }
+
+    main {
+        background-color: transparent;
+    }
+
+    .fleet-card {
+        background: rgba(0, 0, 0, 0.5); /* Hacemos el fondo más oscuro */
+        border-radius: 1rem;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(34, 211, 238, 0.2);
+        backdrop-filter: blur(8px);
+    }
+
+    .fleet-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(34, 211, 238, 0.4);
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+    }
+
+    .fleet-image-container {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+        background: #000; /* Fondo negro para las imágenes */
+    }
+
+    .fleet-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        opacity: 0.8; /* Reducimos un poco la opacidad */
+    }
+
+    .fleet-card:hover .fleet-image {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    .fleet-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+    }
+
+    .fleet-content {
+        padding: 1.5rem;
+    }
+
+    .fleet-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+    }
+
+    .fleet-description {
+        color: #ccc;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .fleet-specs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .spec-tag {
+        background: rgba(34, 211, 238, 0.1);
+        color: #22d3ee;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.875rem;
+        border: 1px solid rgba(34, 211, 238, 0.3);
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: rgba(34, 211, 238, 0.1);
+        color: #22d3ee;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(34, 211, 238, 0.3);
+        font-weight: bold;
+    }
+
+    .cta-button:hover {
+        background: rgba(34, 211, 238, 0.2);
+        border-color: rgba(34, 211, 238, 0.5);
+        box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+    }
+
+    @media (max-width: 768px) {
+        .fleet-card {
+            margin-bottom: 1rem;
+        }
+    }
+</style>

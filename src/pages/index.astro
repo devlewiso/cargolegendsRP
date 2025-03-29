@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hover from '../components/Hover.astro';
+import Sponsors from '../components/sponsors.astro';
+import AboutUs from '../components/AboutUs.astro';
+import SocialMedia from '../components/SocialMedia.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+// Definimos el contenido de la página
+const pageTitle = "Cargo Legends RP";
+const pageDescription = "La mejor comunidad de roleplay de transportistas";
+---
+
+<Layout 
+    title={pageTitle}
+    description={pageDescription}
+>    
+    <Hover />
+    <Sponsors />
+    <AboutUs />
+    <SocialMedia />
+</Layout>

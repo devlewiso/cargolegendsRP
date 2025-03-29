@@ -1,0 +1,56 @@
+---
+// Footer.astro
+---
+
+<footer class="bg-gray-900 border-t border-cyan-400/20 py-12 px-4">
+  <div class="container mx-auto max-w-6xl">
+    
+    <!-- Contenido principal -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      
+      <!-- Columna 1: Logo y descripción -->
+      <div>
+        <div class="flex items-center mb-4">
+          <svg class="w-8 h-8 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/>
+          </svg>
+          <span class="text-xl font-bold text-cyan-400">TRUCKPRO</span>
+        </div>
+        <p class="text-gray-400 text-sm">Transporte inteligente con tecnología de vanguardia.</p>
+      </div>
+      
+      <!-- Columna 2: Enlaces rápidos -->
+      <div>
+        <h3 class="text-cyan-400 font-medium mb-4">Enlaces</h3>
+        <ul class="space-y-2">
+          <li><a href="/" class="text-gray-400 hover:text-cyan-400 text-sm">Inicio</a></li>
+          <li><a href="/servicios" class="text-gray-400 hover:text-cyan-400 text-sm">Servicios</a></li>
+          <li><a href="/flota" class="text-gray-400 hover:text-cyan-400 text-sm">Flota</a></li>
+          <li><a href="/contacto" class="text-gray-400 hover:text-cyan-400 text-sm">Contacto</a></li>
+        </ul>
+      </div>
+      
+      <!-- Columna 3: Contacto -->
+      <div>
+        <h3 class="text-cyan-400 font-medium mb-4">Contacto</h3>
+        <div class="space-y-2">
+          <p class="text-gray-400 text-sm">info@truckpro.com</p>
+          <p class="text-gray-400 text-sm">+1 234 567 890</p>
+          <p class="text-gray-400 text-sm">Ciudad Tecnológica, MX</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Copyright -->
+    <div class="border-t border-cyan-400/10 pt-8 text-center">
+      <p class="text-gray-500 text-xs">© 2023 TruckPro - Todos los derechos reservados</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Efecto hover simple para enlaces */
+  footer a {
+    transition: color 0.3s ease;
+  }
+</style>

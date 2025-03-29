@@ -1,0 +1,310 @@
+---
+// Datos del componente
+const history = {
+    title: "Nuestra Historia",
+    content: "Fundado en 2024 por apasionados del roleplay de camiones, Cargo Legends RP nació con la visión de crear la comunidad más realista y profesional.",
+    image: "/images/truck-garage.jpg" // Añade una imagen relevante
+};
+
+const philosophy = {
+    title: "Nuestra Filosofía",
+    values: [
+        {text: "Realismo en cada viaje", icon: "🚚"},
+        {text: "Comunidad y respeto mutuo", icon: "👥"},
+        {text: "Diversión responsable", icon: "🎮"},
+        {text: "Crecimiento continuo", icon: "📈"}
+    ]
+};
+---
+
+<section class="about-section" data-aos="fade-up">
+    <div class="container">
+        <h2 class="section-title">
+            <span class="title-text">Sobre Nosotros</span>
+            <span class="truck-icon">🚛</span>
+        </h2>
+        
+        <div class="grid">
+            <article class="history-box" data-aos="fade-right">
+                <div class="content-wrapper">
+                    <h3 class="box-title">{history.title}</h3>
+                    <p class="history-content">{history.content}</p>
+                    <div class="founders-badge">
+                        <span>Fundadores 2024</span>
+                    </div>
+                </div>
+                <img 
+                    src={history.image} 
+                    alt="Garaje de camiones" 
+                    class="history-image"
+                    loading="lazy"
+                />
+            </article>
+
+            <article class="philosophy-box" data-aos="fade-left">
+                <h3 class="box-title">{philosophy.title}</h3>
+                <ul class="philosophy-list">
+                    {philosophy.values.map((item) => (
+                        <li class="philosophy-item">
+                            <span class="value-icon">{item.icon}</span>
+                            <span class="value-text">{item.text}</span>
+                        </li>
+                    ))}
+                </ul>
+                <div class="road-line"></div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Variables de diseño */
+    :root {
+        --primary: #FFC107;
+        --secondary: #4FC3F7;
+        --accent: #FF5722;
+        --dark: #1A1A2E;
+        --light: #F8F9FA;
+        --text: #E6E6E6;
+        --background: #16213E;
+    }
+
+    /* Estilos base */
+    .about-section {
+        padding: 5rem 0;
+        background: 
+            linear-gradient(rgba(22, 33, 62, 0.9), rgba(22, 33, 62, 0.9)),
+            url('/images/road-texture.jpg') center/cover;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about-section::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: url('/images/road-line.png') repeat-x;
+        z-index: 1;
+        animation: moveRoad 20s linear infinite;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Título */
+    .section-title {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 4rem;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        border-radius: 3px;
+    }
+
+    .truck-icon {
+        animation: bounce 2s infinite;
+    }
+
+    /* Grid layout */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+    }
+
+    /* Cajas de contenido */
+    .history-box, .philosophy-box {
+        background: rgba(26, 26, 46, 0.8);
+        border-radius: 1rem;
+        padding: 2rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 193, 7, 0.2);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .history-box:hover, .philosophy-box:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .history-box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+        .history-box {
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+        }
+    }
+
+    /* Historia */
+    .content-wrapper {
+        flex: 1;
+    }
+
+    .box-title {
+        font-size: 1.8rem;
+        color: var(--secondary);
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .box-title::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--accent);
+    }
+
+    .history-content {
+        line-height: 1.8;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        color: var(--text);
+    }
+
+    .history-image {
+        border-radius: 0.5rem;
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .history-image:hover {
+        transform: scale(1.03);
+    }
+
+    .founders-badge {
+        background: var(--accent);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        display: inline-block;
+        font-weight: bold;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        animation: pulse 2s infinite;
+    }
+
+    /* Filosofía */
+    .philosophy-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 1.5rem;
+    }
+
+    .philosophy-item {
+        padding: 1rem 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .philosophy-item:hover {
+        transform: translateX(10px);
+    }
+
+    .value-icon {
+        font-size: 1.5rem;
+        min-width: 40px;
+        text-align: center;
+    }
+
+    .value-text {
+        font-size: 1.1rem;
+        color: var(--text);
+    }
+
+    .road-line {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        opacity: 0.5;
+    }
+
+    /* Animaciones */
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes moveRoad {
+        0% { background-position: 0 0; }
+        100% { background-position: 1000px 0; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .box-title {
+            font-size: 1.5rem;
+        }
+        
+        .history-box {
+            flex-direction: column;
+        }
+        
+        .history-image {
+            margin-top: 1.5rem;
+        }
+    }
+</style>
+
+<!-- Componente de animaciones (opcional) -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+</script>

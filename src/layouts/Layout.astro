@@ -1,0 +1,83 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = "Astro Basics",
+	description = "Your website description here"
+} = Astro.props;
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		
+		<!-- Meta tags -->
+		<meta name="description" content={description} />
+		
+		<!-- Open Graph Meta Tags -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="/og-image.jpg" />
+		<meta property="og:url" content="https://yourwebsite.com" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Your Site Name" />
+		<meta property="og:locale" content="en_US" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	</head>
+	<body>	
+		<Header />			
+		<main>
+			<slot />
+		</main>		
+		<Footer />		
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--background: #ffffff;
+		--text: #111111;
+		--primary: #4f46e5;
+		--secondary: #818cf8;
+		--accent: #6366f1;
+	}
+
+	:root.dark {
+		--background: #0f172a;
+		--text: #f1f5f9;
+		--primary: #818cf8;
+		--secondary: #4f46e5;
+		--accent: #6366f1;
+	}
+
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		min-height: 100vh;
+		background-color: var(--background);
+		color: var(--text);
+	}
+
+	main {
+		width: 100%;
+		min-height: 100vh;
+	}
+
+	/* Smooth transition when switching themes */
+	* {
+		transition: background-color 0.3s ease, color 0.3s ease;
+	}
+</style>

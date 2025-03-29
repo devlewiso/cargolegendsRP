@@ -1,0 +1,106 @@
+---
+// Definimos los patrocinadores con información básica
+const partners = [
+    { name: 'Euro Truck Simulator 2', logo: '🚛', url: '#' },
+    { name: 'American Truck Simulator', logo: '🚚', url: '#' },
+    { name: 'FiveM', logo: '🎮', url: '#' },
+    { name: 'Discord Community', logo: '💬', url: '#' },
+];
+---
+
+<div class="partners-container">
+    <h2>Nuestros Aliados</h2>
+    <div class="partners-track">
+        {partners.map(partner => (
+            <div class="partner-item">
+                <a href={partner.url} target="_blank" rel="noopener noreferrer">
+                    <span class="partner-logo">{partner.logo}</span>
+                    <span class="partner-name">{partner.name}</span>
+                </a>
+            </div>
+        ))}
+    </div>
+</div>
+
+<style>
+    .partners-container {
+        width: 100%;
+        overflow: hidden;
+        padding: 2rem 0;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        margin: 2rem 0;
+    }
+
+    .partners-track {
+        display: flex;
+        animation: scroll 20s linear infinite;
+        gap: 2rem;
+        padding: 0 2rem;
+    }
+
+    .partner-item {
+        flex: 0 0 auto;
+        min-width: 200px;
+        padding: 1rem;
+        transition: transform 0.3s ease;
+    }
+
+    .partner-item a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: var(--text);
+    }
+
+    .partner-item:hover {
+        transform: scale(1.05);
+    }
+
+    .partner-logo {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .partner-name {
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-200px * 4 - 8rem));
+        }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .partner-item {
+            min-width: 150px;
+        }
+
+        .partner-logo {
+            font-size: 2.5rem;
+        }
+
+        @keyframes scroll {
+            100% {
+                transform: translateX(calc(-150px * 4 - 8rem));
+            }
+        }
+    }
+</style>
+
+<script>
+    // Duplicar los sponsors para un scroll infinito suave
+    const track = document.querySelector('.partners-track');
+    if (track) {
+        const items = track.innerHTML;
+        track.innerHTML = items + items;
+    }
+</script>
